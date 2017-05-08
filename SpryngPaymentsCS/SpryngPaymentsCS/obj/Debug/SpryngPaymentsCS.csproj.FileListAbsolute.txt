@@ -1,0 +1,9 @@
+C:\Users\Jelle\Documents\Werk\Spryng\SpryngPaymentsCS\SpryngPaymentsCS\SpryngPaymentsCS\bin\Debug\SpryngPaymentsCS.dll
+C:\Users\Jelle\Documents\Werk\Spryng\SpryngPaymentsCS\SpryngPaymentsCS\SpryngPaymentsCS\bin\Debug\SpryngPaymentsCS.pdb
+C:\Users\Jelle\Documents\Werk\Spryng\SpryngPaymentsCS\SpryngPaymentsCS\SpryngPaymentsCS\obj\Debug\SpryngPaymentsCS.csprojResolveAssemblyReference.cache
+C:\Users\Jelle\Documents\Werk\Spryng\SpryngPaymentsCS\SpryngPaymentsCS\SpryngPaymentsCS\obj\Debug\SpryngPaymentsCS.dll
+C:\Users\Jelle\Documents\Werk\Spryng\SpryngPaymentsCS\SpryngPaymentsCS\SpryngPaymentsCS\obj\Debug\SpryngPaymentsCS.pdb
+C:\Users\Jelle\Documents\Werk\Spryng\SpryngPaymentsCS\SpryngPaymentsCS\SpryngPaymentsCS\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Jelle\Documents\Werk\Spryng\SpryngPaymentsCS\SpryngPaymentsCS\SpryngPaymentsCS\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Jelle\Documents\Werk\Spryng\SpryngPaymentsCS\SpryngPaymentsCS\SpryngPaymentsCS\bin\Debug\log4net.dll
+C:\Users\Jelle\Documents\Werk\Spryng\SpryngPaymentsCS\SpryngPaymentsCS\SpryngPaymentsCS\bin\Debug\log4net.xml

@@ -1,0 +1,12 @@
+C:\Users\Jelle\Documents\Werk\Spryng\SpryngPaymentsCS\SpryngPaymentsCS\SPCS_Tester\bin\Debug\SPCS_Tester.exe.config
+C:\Users\Jelle\Documents\Werk\Spryng\SpryngPaymentsCS\SpryngPaymentsCS\SPCS_Tester\obj\Debug\SPCS_Tester.csprojResolveAssemblyReference.cache
+C:\Users\Jelle\Documents\Werk\Spryng\SpryngPaymentsCS\SpryngPaymentsCS\SPCS_Tester\bin\Debug\SPCS_Tester.exe
+C:\Users\Jelle\Documents\Werk\Spryng\SpryngPaymentsCS\SpryngPaymentsCS\SPCS_Tester\bin\Debug\SPCS_Tester.pdb
+C:\Users\Jelle\Documents\Werk\Spryng\SpryngPaymentsCS\SpryngPaymentsCS\SPCS_Tester\bin\Debug\SpryngPaymentsCS.dll
+C:\Users\Jelle\Documents\Werk\Spryng\SpryngPaymentsCS\SpryngPaymentsCS\SPCS_Tester\bin\Debug\SpryngPaymentsCS.pdb
+C:\Users\Jelle\Documents\Werk\Spryng\SpryngPaymentsCS\SpryngPaymentsCS\SPCS_Tester\obj\Debug\SPCS_Tester.exe
+C:\Users\Jelle\Documents\Werk\Spryng\SpryngPaymentsCS\SpryngPaymentsCS\SPCS_Tester\obj\Debug\SPCS_Tester.pdb
+C:\Users\Jelle\Documents\Werk\Spryng\SpryngPaymentsCS\SpryngPaymentsCS\SPCS_Tester\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Jelle\Documents\Werk\Spryng\SpryngPaymentsCS\SpryngPaymentsCS\SPCS_Tester\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Jelle\Documents\Werk\Spryng\SpryngPaymentsCS\SpryngPaymentsCS\SPCS_Tester\bin\Debug\log4net.dll
+C:\Users\Jelle\Documents\Werk\Spryng\SpryngPaymentsCS\SpryngPaymentsCS\SPCS_Tester\bin\Debug\log4net.xml

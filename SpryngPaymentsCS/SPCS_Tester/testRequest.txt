@@ -1,0 +1,22 @@
+﻿public async void testRequest(string url)
+        {
+            string apikey = "fb1XahIMiNXz5dT2z9OclYbokNdiLOfErDitngA2Gb0";
+
+            HttpClient client = new HttpClient();
+            //StringContent content = new StringContent(transaction.getDescriptor());
+            client.DefaultRequestHeaders.Add("X-APIKEY", apikey);
+            HttpResponseMessage response = null;
+            try
+            {
+                response = await client.GetAsync(url);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("exception caught: " + ex);
+            }
+            if (response != null)
+            {
+                string mycontent = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(mycontent);
+            }
+        }

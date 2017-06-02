@@ -18,10 +18,10 @@ namespace SpryngPaymentsCS.Http.Requests.Account
             this.isCollection = false;
         }
 
-        public override Type getClass()
-        {
-            return typeof(Models.Account);
-        }
+        //public override Type getClass()
+        //{
+        //    return typeof(Models.Account);
+        //}
 
         public override string getEndpoint()
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json.Linq;
 
 namespace SpryngPaymentsCS.Http.Requests
 {
@@ -10,7 +11,7 @@ namespace SpryngPaymentsCS.Http.Requests
     {
         private AbstractRequest request;
 
-        private Object data;
+        private JObject data;
 
         private bool requestWasSuccessful;
 
@@ -23,7 +24,7 @@ namespace SpryngPaymentsCS.Http.Requests
         //    this.Response(request, null, requestWasSuccessful);
         //}
 
-        public Response(AbstractRequest request, Object data, bool requestWasSuccessful)
+        public Response(AbstractRequest request, dynamic data, bool requestWasSuccessful)
         {
             this.request = request;
             this.data = data;
@@ -40,12 +41,12 @@ namespace SpryngPaymentsCS.Http.Requests
             this.request = request;
         }
 
-        public Object getData()
+        public dynamic getData()
         {
             return data;
         }
 
-        public void setData(Object data)
+        public void setData(dynamic data)
         {
             this.data = data;
         }

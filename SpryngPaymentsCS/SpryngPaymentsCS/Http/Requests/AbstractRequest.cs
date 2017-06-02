@@ -23,7 +23,7 @@ namespace SpryngPaymentsCS.Http.Requests
         //}
 
         //!! Probably not functional in the way it is supposed to
-        public abstract Type getClass();
+        //public abstract Type getClass();
 
         public LinkedList<Filter> getFilters()
         {

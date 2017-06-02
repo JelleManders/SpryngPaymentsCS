@@ -28,11 +28,6 @@ namespace SpryngPaymentsCS.Http.Requests.Account
             return this.requestMethod;
         }
 
-        public override Type getClass()
-        {
-            return typeof(Models.Account);
-        }
-
         public override string getURLMethod()
         {
             return URL_METHOD;

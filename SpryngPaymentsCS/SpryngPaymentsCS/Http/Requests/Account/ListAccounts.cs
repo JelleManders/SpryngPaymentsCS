@@ -15,11 +15,6 @@ namespace SpryngPaymentsCS.Http.Requests.Account
             this.isCollection = true;
         }
 
-        public override Type getClass()
-        {
-            return typeof(Models.Account[]);
-        }
-
         public override IRequestMethod getRequestMethod()
         {
             return this.getRequestMethod();

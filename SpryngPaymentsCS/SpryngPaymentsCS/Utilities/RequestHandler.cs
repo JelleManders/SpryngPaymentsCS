@@ -17,10 +17,6 @@ namespace SpryngPaymentsCS.Utilities
 
         protected HttpClient httpClient;
 
-        //protected Gson deserialize
-
-        //protected JsonParser jsonParser
-
         protected string baseUrl;
 
         protected readonly new string DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ssX";
@@ -42,27 +38,20 @@ namespace SpryngPaymentsCS.Utilities
             this.httpClient = new HttpClient();
 
             this.setBaseUrl(SpryngPayments.getActiveEndpoint());
-            Console.WriteLine("Initialised Handler...\n");
         }
 
         public async Task send()
         {
-            Console.WriteLine("Started send function...\n");
-
             Uri uri = this.createUri(this.request);
-            Console.WriteLine("Uri = "+uri);
             HttpResponseMessage httpResponse;
 
             try
             {
                 httpResponse = await executeHttpRequest(uri, this.request.getRequestMethod());
-                Console.WriteLine("!!  Finished execute, starting evaluate...\n");
                 evaluateResponse(httpResponse);
-                Console.WriteLine("Evaluated Response, no exceptions occurred...\n");
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception caught (RequestHandler.cs line 61)\n" + ex);
                 throw new RequestException("Request was unsuccesful", 101);
             }
 
@@ -72,8 +61,6 @@ namespace SpryngPaymentsCS.Utilities
 
         private async Task<HttpResponseMessage> executeHttpRequest(Uri uri, IRequestMethod method)
         {
-            Console.WriteLine("Started executeHttpRequest function...\n");
-
             string name = "";
             string value;
 
@@ -81,19 +68,14 @@ namespace SpryngPaymentsCS.Utilities
             {
                 name = header.getName();
                 value = header.getValue();
-                Console.WriteLine("Adding Header " + name + " with value " + value + "...\n");
                 this.httpClient.DefaultRequestHeaders.Add(name, value);
             }
-
-            Console.WriteLine("Added Headers...\n");
 
             HttpResponseMessage httpResponse = null;
 
             if (method == IRequestMethod.GET)
             {
-                Console.WriteLine("About to Call GetAsync...\n");
                 httpResponse = await httpClient.GetAsync(uri);
-                Console.WriteLine("Called GetAsync...\n");
             }
             else if (method == IRequestMethod.POST)
             {
@@ -117,10 +99,7 @@ namespace SpryngPaymentsCS.Utilities
 
             try
             {
-                var responseType = this.request.getClass();
-                if (this.getResponse() == null) { Console.WriteLine("yup, it's NULL..."); }
-                else { Console.WriteLine("Response: "+this.getResponse()); }
-                response.setData(JsonConvert.DeserializeObject<Account>(this.getResponse())); //HERE
+                response.setData(JsonConvert.DeserializeObject<dynamic>(this.getResponse()));
             }
             catch (JsonException jse)
             {
@@ -129,7 +108,7 @@ namespace SpryngPaymentsCS.Utilities
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Exception caught (RequestHandler.cs line 118)\n" + ex);
+                SpryngPayments.LOG.Error("Unexpected Exception Occurred", ex);
             }
 
             return response;
@@ -163,7 +142,6 @@ namespace SpryngPaymentsCS.Utilities
                 throw new RequestException("Could not read response", 101);
             }
             this.response = response;
-            Console.WriteLine("Response was set...");
         }
 
         private Uri createUri(AbstractRequest request)
@@ -178,7 +156,6 @@ namespace SpryngPaymentsCS.Utilities
             if (filterAmount > 0)
             {
                 string query = "?";
-                //int index = 0;
                 query += filters.First;
                 filters.RemoveFirst();
                 for(int _ = 1; _ < filterAmount; _++)

@@ -3,29 +3,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace SpryngPaymentsCS.Models
 {
     public class Account : SpryngObject
     {
+        [JsonProperty("_id")]
         private string id;
 
+        [JsonProperty("organisation")]
         private string organisationId;
 
+        [JsonProperty("currency_code")]
         private string currencyCode;
 
+        [JsonProperty("name")]
         private string name;
 
+        [JsonProperty("webhook_transaction_update")]
         private string transactionWebhook;
 
+        [JsonProperty("webhook_chargeback_update")]
         private string chargebackWebhook;
 
+        [JsonProperty("webhook_refund_update")]
         private string refundWebhook;
 
+        [JsonProperty("service_fees")]
         private int[] serviceFees;
 
+        [JsonProperty("Processors_configurations")]
         private List<AbstractProcessorConfiguration> processorConfigurations;
 
+        [JsonProperty("processors")]
         private string[] processors;
 
         public string getId()
@@ -126,6 +137,11 @@ namespace SpryngPaymentsCS.Models
         public void setProcessors(string[] processors)
         {
             this.processors = processors;
+        }
+
+        public Type getClass()
+        {
+            return typeof(Account);
         }
     }
 }

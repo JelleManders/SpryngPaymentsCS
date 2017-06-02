@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpryngPaymentsCS", "SpryngP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPCS_Tester", "SPCS_Tester\SPCS_Tester.csproj", "{DC93D63C-211A-49AE-AB19-6BA75424385C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpryngPaymentsCSTests", "SpryngPaymentsCSTests\SpryngPaymentsCSTests.csproj", "{15D8469E-683F-4018-B5B0-41EB388AB813}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{DC93D63C-211A-49AE-AB19-6BA75424385C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC93D63C-211A-49AE-AB19-6BA75424385C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC93D63C-211A-49AE-AB19-6BA75424385C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15D8469E-683F-4018-B5B0-41EB388AB813}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15D8469E-683F-4018-B5B0-41EB388AB813}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15D8469E-683F-4018-B5B0-41EB388AB813}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15D8469E-683F-4018-B5B0-41EB388AB813}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

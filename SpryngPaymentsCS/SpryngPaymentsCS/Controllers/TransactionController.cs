@@ -1,70 +1,169 @@
 ﻿using System.IO;
 using System.Net;
+using System.Collections.Generic;
 using Newtonsoft.Json;
-
-// 5571197343845659
+using System.Threading.Tasks;
+using SpryngPaymentsCS.Models;
+using SpryngPaymentsCS.Http.Requests.Transaction;
+using SpryngPaymentsCS.Utilities;
 
 namespace SpryngPaymentsCS.Controllers
 {
-    class TransactionController
+    public class TransactionController : BaseController
     {
-        private string account;
-        private int amount;
-        private bool capture_now;
-        private string card;
-        private string customer_ip;
-        private string dynamic_descriptor;
-        private string merchant_reference;
-        private string pares;
-        private string user_agent;
+        public TransactionController(SpryngPayments api) : base(api) { }
 
-        private string descriptor;
-
-        public TransactionController()
+        public Transaction get(string transactionId)
         {
-            
+            this.http.setRequest(new GetTransaction(transactionId));
+            Task send = this.http.send();
+
+            send.Wait();
+
+            return (Transaction)this.http.getDeserializedResponse().getData().ToObject<Transaction>();
         }
 
-        public string getAccount() { return account; }
-
-        public void setAccount(string newValue) { account = newValue; }
-
-        public int getAmount() { return amount; }
-
-        public void setAmount(int newValue) { amount = newValue; }
-
-        public bool getCapture_now() { return capture_now; }
-
-        public void setCapture_now(bool newValue) { capture_now = newValue; }
-
-        public string getCard() { return card; }
-
-        public void setCard(string newValue) { card = newValue; }
-
-        public string getCustomer_ip() { return customer_ip; }
-
-        public void setCustomer_ip(string newValue) { customer_ip = newValue; }
-
-        public string getDynamic_descriptor() { return dynamic_descriptor; }
-
-        public void setDynamic_descriptor(string newValue) { dynamic_descriptor = newValue; }
-
-        public string getMerchant_reference() { return merchant_reference; }
-
-        public void setMerchant_reference(string newValue) { merchant_reference = newValue; }
-
-        public string getPares() { return pares; }
-
-        public void setPares(string newValue) { pares = newValue; }
-
-        public string getUser_agent() { return user_agent; }
-
-        public void setUser_agent(string newValue) { user_agent = newValue; }
-
-        public string getDescriptor()
+        public List<Transaction> list(List<Filter> filters)
         {
-            descriptor = JsonConvert.SerializeObject(this);
-            return descriptor;
+            this.addFilters(filters);
+
+            return this.list();
+        }
+
+        public List<Transaction> list()
+        {
+            this.http.setRequest(new ListTransactions());
+            Task send = this.http.send();
+
+            send.Wait();
+
+            return (List<Transaction>)this.http.getDeserializedResponse().getData().ToObject<List<Transaction>>();
+        }
+
+        public Transaction create(Transaction transaction)
+        {
+            this.http.setRequest(new CreateTransaction());
+            this.http.setPostEntity(transaction);
+            Task send = this.http.send();
+
+            send.Wait();
+
+            return (Transaction) this.http.getDeserializedResponse().getData().ToObject<Transaction>();
+        }
+
+        public Transaction voidAuth(string id)
+        {
+            this.http.setRequest(new VoidTransaction(id));
+            Task send = this.http.send();
+
+            send.Wait();
+
+            return (Transaction)this.http.getDeserializedResponse().getData().ToObject<Transaction>();
+        }
+
+        public Transaction voidCapture(string id)
+        {
+            this.http.setRequest(new VoidCaptureTransaction(id));
+            Task send = this.http.send();
+
+            send.Wait();
+
+            return (Transaction) this.http.getDeserializedResponse().getData().ToObject<Transaction>();
+        }
+
+        public Transaction update(string id, string merchantReference)
+        {
+            this.http.setRequest(new UpdateTransaction(id));
+            TransactionSpecialParameters tsp = new TransactionSpecialParameters();
+            tsp.setMerchantReference(merchantReference);
+            this.http.setPostEntity(tsp);
+
+            Task send = this.http.send();
+
+            send.Wait();
+
+            return (Transaction)this.http.getDeserializedResponse().getData().ToObject<Transaction>();
+        }
+
+        public Transaction update(Transaction transaction)
+        {
+            this.http.setRequest(new UpdateTransaction(transaction.getId()));
+            TransactionSpecialParameters tsp = new TransactionSpecialParameters();
+            tsp.setMerchantReference(transaction.getMerchantReference());
+            this.http.setPostEntity(tsp);
+
+            Task send = this.http.send();
+
+            send.Wait();
+
+            return (Transaction)this.http.getDeserializedResponse().getData().ToObject<Transaction>();
+        }
+
+        public Transaction capture(string id, int amount)
+        {
+            this.http.setRequest(new CaptureTransaction(id));
+            TransactionSpecialParameters tsp = new TransactionSpecialParameters();
+            tsp.setAmount(amount);
+            this.http.setPostEntity(tsp);
+
+            Task send = this.http.send();
+
+            send.Wait();
+
+            return (Transaction)this.http.getDeserializedResponse().getData().ToObject<Transaction>();
+        }
+
+        public Refund refund(string id, int amount)
+        {
+            this.http.setRequest(new RefundTransaction(id));
+            TransactionSpecialParameters tsp = new TransactionSpecialParameters();
+            tsp.setAmount(amount);
+            this.http.setPostEntity(tsp);
+
+            Task send = this.http.send();
+
+            send.Wait();
+
+            return (Refund)this.http.getDeserializedResponse().getData().ToObject<Refund>();
+        }
+
+        public Refund refund(string id, int amount, string reason)
+        {
+            this.http.setRequest(new RefundTransaction(id));
+            TransactionSpecialParameters tsp = new TransactionSpecialParameters();
+            tsp.setAmount(amount);
+            tsp.setReason(reason);
+            this.http.setPostEntity(tsp);
+
+            Task send = this.http.send();
+
+            send.Wait();
+
+            return (Refund)this.http.getDeserializedResponse().getData().ToObject<Refund>(); 
+        }
+
+        private class TransactionSpecialParameters : SpryngObject
+        {
+            [JsonProperty("amount")]
+            private int amount;
+
+            [JsonProperty("reason")]
+            private string reason;
+
+            [JsonProperty("merchant_reference")]
+            private string merchantReference;
+
+            public int getAmount() { return amount; }
+
+            public void setAmount(int amount) { this.amount = amount; }
+
+            public string getReason() { return this.reason; }
+
+            public void setReason(string reason) { this.reason = reason; }
+
+            public string getMerchantReference() { return this.merchantReference; }
+
+            public void setMerchantReference(string merchantReference) { this.merchantReference = merchantReference; }
         }
     }
 }

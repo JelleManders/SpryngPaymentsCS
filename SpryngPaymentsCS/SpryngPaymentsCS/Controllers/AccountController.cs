@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 using SpryngPaymentsCS.Models;
 using SpryngPaymentsCS.Http.Requests.Account;
@@ -20,7 +21,7 @@ namespace SpryngPaymentsCS.Controllers
 
             send.Wait();
 
-            Account account = (Account) this.http.getDeserializedResponse().getData();
+            Account account = this.http.getDeserializedResponse().getData().ToObject<Account>();
 
             return account;
         }
@@ -39,7 +40,7 @@ namespace SpryngPaymentsCS.Controllers
 
             list.Wait();
 
-            return (List<Account>) this.http.getDeserializedResponse().getData();
+            return (List<Account>) this.http.getDeserializedResponse().getData().ToObject<List<Account>>();
         }
 
         public Account create(Account account)
@@ -50,7 +51,7 @@ namespace SpryngPaymentsCS.Controllers
 
             create.Wait();
 
-            return (Account) this.http.getDeserializedResponse().getData();
+            return (Account) this.http.getDeserializedResponse().getData().ToObject<Account>();
         }
     }
 }

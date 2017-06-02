@@ -1,8 +1,12 @@
-﻿using System;
+﻿/* Spryngpayments API library
+ * Author: Jelle Manders
+ * Date: April through May 2017
+ */
+
+using System.Net;
 using System.Net.Http;
 using SpryngPaymentsCS.Controllers;
 using log4net;
-
 
 namespace SpryngPaymentsCS
 {
@@ -22,10 +26,40 @@ namespace SpryngPaymentsCS
 
         protected bool sandboxEnabled;
 
+        /**
+         * Public instance of the TransactionController
+         */
+        public TransactionController transaction;
+
+        /**
+         * Public instance of the AccountController.
+         */
         public AccountController account;
+
+        /**
+         * Public instance of the OrganisationController
+         */
+        public OrganisationController organisation;
+
+        /**
+         * Public instance of the CustomerController
+         */
+        public CustomerController customer;
+
+        /**
+         * Public instance of the CardController
+         */
+        public CardController card;
+
+        /**
+         * Public instance of the ThreeDController
+         */
+        public ThreeDController threeD;
 
         public SpryngPayments(string apiKey, bool sandboxEnabled)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
             this.setApiKey(apiKey);
             this.setSandboxEnabled(sandboxEnabled);
 
@@ -38,7 +72,12 @@ namespace SpryngPaymentsCS
                 this.setActiveEndpoint(this.API_ENDPOINT_PRODUCTION);
             }
 
-            this.account = new AccountController(this);
+            this.account       = new AccountController(this);
+            this.transaction   = new TransactionController(this);
+            this.organisation  = new OrganisationController(this);
+            this.customer      = new CustomerController(this);
+            this.card          = new CardController(this);
+            this.threeD        = new ThreeDController(this);
         }
 
         public string getApiKey()
